@@ -976,6 +976,10 @@ public:
     handle getBackupId() const;
     void setBackupId(const handle &backupId);
 
+    // Whether this sync is backed by an external device.
+    void isExternal(bool isExternal);
+    bool isExternal() const;
+
 private:
 
     // Unique identifier. any other field can change (even remote handle),
@@ -984,6 +988,9 @@ private:
 
     // enabled/disabled by the user
     bool mEnabled = true;
+
+    // sync stored on external device.
+    bool mExternal = false;
 
     // the local path of the sync
     std::string mLocalPath;

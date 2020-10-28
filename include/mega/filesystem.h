@@ -417,6 +417,8 @@ public:
 
     DirNotify(const LocalPath&, const LocalPath&);
     virtual ~DirNotify() {}
+
+    bool empty();
 };
 
 // generic host filesystem access interface
