@@ -597,7 +597,7 @@ public:
         return mNotifications.empty();
     }
 
-    bool size()
+    size_t size()
     {
         std::lock_guard<std::mutex> g(m);
         return mNotifications.size();
