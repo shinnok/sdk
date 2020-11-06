@@ -9238,7 +9238,7 @@ void MegaClient::opensctable()
 
         if (dbname.size())
         {
-            sctable = dbaccess->open(rng, fsaccess, &dbname, false, false);
+            sctable = dbaccess->open(rng, *fsaccess, dbname);
             pendingsccommit = false;
         }
     }
@@ -9265,7 +9265,7 @@ void MegaClient::openStatusTable()
         {
             dbname.insert(0, "status_");
 
-            statusTable = dbaccess->open(rng, fsaccess, &dbname, false, false);
+            statusTable = dbaccess->open(rng, *fsaccess, dbname);
         }
     }
 }
@@ -11657,7 +11657,7 @@ void MegaClient::enabletransferresumption(const char *loggedoutid)
 
     dbname.insert(0, "transfers_");
 
-    tctable = dbaccess->open(rng, fsaccess, &dbname, true, true);
+    tctable =dbaccess->open(rng, *fsaccess, dbname, DB_OPEN_FLAG_RECYCLE | DB_OPEN_FLAG_TRANSACTED);
     if (!tctable)
     {
         return;
@@ -11751,7 +11751,7 @@ void MegaClient::disabletransferresumption(const char *loggedoutid)
     }
     dbname.insert(0, "transfers_");
 
-    tctable = dbaccess->open(rng, fsaccess, &dbname, true, true);
+    tctable = dbaccess->open(rng, *fsaccess, dbname, DB_OPEN_FLAG_RECYCLE | DB_OPEN_FLAG_TRANSACTED);
     if (!tctable)
     {
         return;
